@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free LLM & Data Annotation Skill Test | Accurate Data Annotator</title>
+<meta name="description" content="Test your readiness for AI data annotation work. Free, beginner-friendly, no experience required." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+<style>
+/* ── ADA Brand Design System ── */
+:root {
+  --black:       #0a0a0a;
+  --black-card:  #141414;
+  --black-el:    #1c1c1c;
+  --black-border:#2c2c2c;
+  --red:         #e81010;
+  --red-dark:    #b80d0d;
+  --red-glow:    rgba(232,16,16,.2);
+  --red-subtle:  rgba(232,16,16,.08);
+  --white:       #ffffff;
+  --white-soft:  #efefef;
+  --white-muted: #999999;
+  --correct:     #22c55e;
+  --correct-bg:  rgba(34,197,94,.09);
+  --wrong-bg:    rgba(232,16,16,.09);
+  --warn:        #f59e0b;
+  --radius:      14px;
+  --radius-sm:   9px;
+  --shadow:      0 4px 32px rgba(0,0,0,.55);
+  --shadow-md:   0 8px 48px rgba(0,0,0,.65);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.page { max-width: 680px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ── Header ── */
+.site-header {
+  padding: 22px 20px 0;
+  max-width: 680px; margin: 0 auto;
+  display: flex; align-items: center;
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 3px solid var(--red);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--black); flex-shrink: 0;
+}
+.logo-mark span {
+  font-family: 'Syne', sans-serif;
+  font-size: 9.5px; font-weight: 800;
+  color: var(--white); letter-spacing: .03em;
+}
+.brand-text { line-height: 1.2; }
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 12.5px; font-weight: 700;
+  color: var(--white); letter-spacing: .05em; text-transform: uppercase;
+  display: block;
+}
+.brand-sub {
+  font-size: 9.5px; color: var(--white-muted);
+  letter-spacing: .07em; text-transform: uppercase;
+}
+.header-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red) 40%, var(--red) 60%, transparent);
+  margin: 18px auto 0; max-width: 680px; padding: 0 20px;
+}
+.header-line-inner { height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent); }
+
+/* ── Hero ── */
+.hero { padding: 50px 0 36px; text-align: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--red-subtle);
+  border: 1px solid rgba(232,16,16,.28);
+  color: var(--red); font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 5px 15px; border-radius: 100px; margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.35; transform:scale(1.5); }
+}
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(23px, 5vw, 37px); font-weight: 800;
+  line-height: 1.14; color: var(--white);
+  letter-spacing: -.02em; margin-bottom: 16px;
+}
+h1 .acc { color: var(--red); }
+.hero-desc {
+  font-size: 15px; color: var(--white-muted);
+  max-width: 440px; margin: 0 auto 26px;
+  font-weight: 300; line-height: 1.75;
+}
+.hero-pills {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 7px; margin-bottom: 32px;
+}
+.pill {
+  background: var(--black-card); border: 1px solid var(--black-border);
+  border-radius: 100px; font-size: 12px; padding: 5px 13px;
+  color: var(--white-muted); display: flex; align-items: center; gap: 5px;
+}
+
+/* ── Reg Card ── */
+.reg-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: var(--radius);
+  padding: 30px 26px;
+  box-shadow: var(--shadow);
+}
+.reg-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16.5px; font-weight: 700; color: var(--white);
+  margin-bottom: 5px;
+}
+.reg-sub { font-size: 13.5px; color: var(--white-muted); margin-bottom: 22px; font-weight: 300; }
+
+.form-group { margin-bottom: 15px; }
+.form-label {
+  display: block; font-size: 11.5px; font-weight: 600;
+  letter-spacing: .055em; text-transform: uppercase;
+  color: var(--white-muted); margin-bottom: 7px;
+}
+.form-input, .form-select {
+  width: 100%; background: var(--black);
+  border: 1.5px solid var(--black-border);
+  border-radius: var(--radius-sm);
+  color: var(--white); font-family: 'DM Sans', sans-serif;
+  font-size: 14.5px; padding: 12px 15px; outline: none;
+  transition: border-color .2s; -webkit-appearance: none;
+}
+.form-input::placeholder { color: #3a3a3a; }
+.form-input:focus, .form-select:focus { border-color: var(--red); }
+.form-select { cursor: pointer; }
+.form-select option { background: #1a1a1a; }
+
+.form-note {
+  font-size: 11.5px; color: #4a4a4a;
+  margin-top: 7px; display: flex; align-items: center; gap: 5px;
+}
+.form-error {
+  display: none; background: rgba(232,16,16,.08);
+  border: 1px solid rgba(232,16,16,.28); color: #ff7070;
+  font-size: 13px; padding: 10px 13px;
+  border-radius: var(--radius-sm); margin-top: 12px;
+}
+.form-error.show { display: block; }
+
+.start-btn {
+  width: 100%; display: flex; align-items: center;
+  justify-content: center; gap: 8px;
+  background: var(--red); color: var(--white);
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 15px; letter-spacing: .01em;
+  padding: 14px 32px; border-radius: 100px; border: none;
+  cursor: pointer; margin-top: 20px;
+  box-shadow: 0 4px 22px rgba(232,16,16,.38);
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232,16,16,.52);
+  background: var(--red-dark);
+}
+.start-btn:active { transform: translateY(0); }
+
+/* ── Progress ── */
+.progress-wrap { margin-bottom: 26px; display: none; }
+.progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.progress-label { font-size: 12.5px; font-weight: 500; color: var(--white-muted); }
+.progress-count { font-family: 'Syne', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--red); }
+.progress-track { height: 4px; background: var(--black-border); border-radius: 100px; overflow: hidden; }
+.progress-fill {
+  height: 100%; border-radius: 100px;
+  background: linear-gradient(90deg, var(--red-dark), var(--red));
+  transition: width .4s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Greeting ── */
+.greeting-banner {
+  background: var(--red-subtle); border: 1px solid rgba(232,16,16,.22);
+  border-radius: var(--radius-sm); padding: 11px 15px;
+  font-size: 13.5px; color: var(--white-soft);
+  margin-bottom: 18px; display: none;
+}
+.greeting-banner strong { color: var(--red); }
+
+/* ── Q card ── */
+.quiz-card {
+  background: var(--black-card); border: 1px solid var(--black-border);
+  border-radius: var(--radius); padding: 28px 24px;
+  box-shadow: var(--shadow); display: none; animation: slideIn .3s ease;
+}
+@keyframes slideIn {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.quiz-card.active { display: block; }
+
+.q-category {
+  display: inline-block; font-size: 10.5px; font-weight: 600;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--red); background: var(--red-subtle);
+  border: 1px solid rgba(232,16,16,.2);
+  border-radius: 100px; padding: 3px 11px; margin-bottom: 13px;
+}
+.q-text {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(14.5px, 2.5vw, 17.5px); font-weight: 600;
+  line-height: 1.45; color: var(--white); margin-bottom: 18px;
+}
+
+.options { display: flex; flex-direction: column; gap: 9px; margin-bottom: 20px; }
+.option {
+  display: flex; align-items: flex-start; gap: 11px;
+  background: var(--black-el); border: 1.5px solid var(--black-border);
+  border-radius: var(--radius-sm); padding: 12px 15px;
+  cursor: pointer; text-align: left; font-family: inherit;
+  font-size: 14px; color: var(--white-muted); line-height: 1.5;
+  transition: border-color .15s, background .15s, transform .1s;
+}
+.option:hover:not(.selected):not(.disabled) {
+  border-color: var(--red); background: var(--red-subtle);
+  color: var(--white); transform: translateX(3px);
+}
+.option.selected { border-color: var(--red); background: var(--red-subtle); color: var(--white); }
+.option.correct  { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); font-weight: 500; }
+.option.wrong    { border-color: var(--red); background: var(--wrong-bg); color: #ff8080; font-weight: 500; }
+.option.disabled { cursor: default; }
+
+.opt-letter {
+  width: 23px; height: 23px; flex-shrink: 0; border-radius: 50%;
+  background: var(--black-border); display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 10.5px; font-weight: 700; color: #555;
+  transition: background .15s, color .15s;
+}
+.option.selected .opt-letter { background: var(--red); color: var(--white); }
+.option.correct  .opt-letter { background: var(--correct); color: var(--white); }
+.option.wrong    .opt-letter { background: var(--red); color: var(--white); }
+
+.q-feedback {
+  display: none; font-size: 13px; padding: 11px 14px;
+  border-radius: var(--radius-sm); margin-bottom: 16px; line-height: 1.6;
+}
+.q-feedback.show { display: block; }
+.q-feedback.correct-fb { background: var(--correct-bg); color: #4ade80; border: 1px solid rgba(34,197,94,.22); }
+.q-feedback.wrong-fb   { background: var(--wrong-bg);   color: #ffa0a0; border: 1px solid rgba(232,16,16,.22); }
+.q-feedback strong { font-weight: 600; }
+
+.q-actions { display: flex; justify-content: flex-end; }
+.btn-next {
+  display: none; align-items: center; gap: 6px;
+  background: var(--red); color: var(--white);
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 13.5px; letter-spacing: .01em;
+  padding: 11px 22px; border-radius: 100px; border: none; cursor: pointer;
+  box-shadow: 0 3px 16px rgba(232,16,16,.35);
+  transition: opacity .15s, transform .15s;
+}
+.btn-next:hover { opacity: .85; transform: translateY(-1px); }
+.btn-next.show  { display: inline-flex; }
+
+/* ── Results ── */
+.results-card {
+  background: var(--black-card); border: 1px solid var(--black-border);
+  border-radius: var(--radius); padding: 38px 28px;
+  box-shadow: var(--shadow-md); text-align: center;
+  display: none; animation: slideIn .4s ease;
+}
+.results-card.show { display: block; }
+
+.result-greeting { font-size: 13.5px; color: var(--white-muted); margin-bottom: 20px; font-weight: 300; }
+.result-greeting strong { color: var(--white); }
+
+.result-score-wrap {
+  width: 114px; height: 114px; border-radius: 50%;
+  border: 5px solid var(--red);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  margin: 0 auto 20px; background: var(--black);
+  box-shadow: 0 0 44px rgba(232,16,16,.28), inset 0 0 20px rgba(232,16,16,.04);
+  position: relative;
+}
+.score-glow {
+  position: absolute; inset: -10px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,16,16,.14) 0%, transparent 70%);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%,100% { opacity:.6; } 50% { opacity:1; }
+}
+.result-score-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px; font-weight: 800; color: var(--white); line-height: 1;
+}
+.result-score-total { font-size: 11px; color: var(--white-muted); margin-top: 2px; }
+
+.result-level {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 100px; margin-bottom: 11px;
+}
+.level-beginner   { background: rgba(245,158,11,.1);  color: var(--warn);    border: 1px solid rgba(245,158,11,.25); }
+.level-developing { background: rgba(14,165,233,.1);  color: #38bdf8;        border: 1px solid rgba(14,165,233,.25); }
+.level-strong     { background: var(--correct-bg);    color: var(--correct); border: 1px solid rgba(34,197,94,.25); }
+.level-excellent  { background: var(--red-subtle);    color: var(--red);     border: 1px solid rgba(232,16,16,.28); }
+
+.result-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 10px;
+}
+.result-message {
+  font-size: 14px; color: var(--white-muted);
+  max-width: 390px; margin: 0 auto 24px;
+  font-weight: 300; line-height: 1.72;
+}
+
+/* Tiers table */
+.tiers-box {
+  background: var(--black); border: 1px solid var(--black-border);
+  border-radius: var(--radius-sm); padding: 15px 17px;
+  margin: 0 auto 24px; max-width: 370px; text-align: left;
+}
+.tiers-box-title {
+  font-size: 10.5px; font-weight: 600; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--white-muted); margin-bottom: 11px;
+}
+.tier-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 0; border-bottom: 1px solid var(--black-border);
+  font-size: 13px;
+}
+.tier-row:last-child { border-bottom: none; }
+.tier-range {
+  font-family: 'Syne', sans-serif; font-size: 11.5px; font-weight: 700;
+  color: #3a3a3a; width: 52px; flex-shrink: 0;
+}
+.tier-label { color: #4a4a4a; flex: 1; }
+.tier-row.active-tier .tier-range { color: var(--red); }
+.tier-row.active-tier .tier-label { color: var(--white-soft); font-weight: 500; }
+.tier-you {
+  font-size: 9.5px; font-weight: 700; letter-spacing: .06em;
+  color: var(--red); text-transform: uppercase;
+  background: var(--red-subtle); border: 1px solid rgba(232,16,16,.25);
+  border-radius: 100px; padding: 2px 8px; flex-shrink: 0;
+}
+
+/* Accuracy bar */
+.score-bar-wrap { margin: 0 auto 24px; max-width: 370px; text-align: left; }
+.score-bar-label {
+  font-size: 10.5px; color: var(--white-muted);
+  margin-bottom: 6px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+}
+.score-bar-track { height: 5px; background: var(--black-border); border-radius: 100px; overflow: hidden; }
+.score-bar-fill  {
+  height: 100%; border-radius: 100px;
+  background: linear-gradient(90deg, var(--red-dark), var(--red));
+  transition: width 1.3s cubic-bezier(.4,0,.2,1);
+}
+
+/* CTA */
+.cta-section { border-top: 1px solid var(--black-border); padding-top: 24px; margin-top: 24px; }
+.cta-section h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 14.5px; font-weight: 700; color: var(--white); margin-bottom: 13px;
+}
+.cta-grid { display: flex; flex-direction: column; gap: 9px; }
+.cta-card {
+  background: var(--black); border: 1px solid var(--black-border);
+  border-radius: var(--radius-sm); padding: 12px 15px;
+  font-size: 13px; color: var(--white-muted);
+  text-align: left; display: flex; align-items: flex-start; gap: 11px;
+}
+.cta-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.cta-card strong { display: block; color: var(--white-soft); font-size: 13px; margin-bottom: 2px; font-weight: 600; }
+
+.btn-retry {
+  margin-top: 18px; background: transparent;
+  border: 1.5px solid var(--black-border); color: var(--white-muted);
+  font-family: 'DM Sans', sans-serif; font-size: 13.5px;
+  padding: 10px 22px; border-radius: 100px; cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.btn-retry:hover { border-color: var(--red); color: var(--red); }
+
+/* Footer */
+.site-footer {
+  text-align: center; padding: 26px 20px;
+  font-size: 11.5px; color: #3a3a3a;
+  border-top: 1px solid var(--black-border); margin-top: 20px;
+}
+.site-footer a { color: var(--red); text-decoration: none; }
+
+@media (max-width: 480px) {
+  .quiz-card    { padding: 20px 15px; }
+  .results-card { padding: 26px 15px; }
+  .reg-card     { padding: 22px 15px; }
+  .hero         { padding: 36px 0 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="#" class="brand">
+    <div class="logo-mark"><span>ADA</span></div>
+    <div class="brand-text">
+      <span class="brand-name">Accurate Data Annotator</span>
+      <span class="brand-sub">AI Annotation Community</span>
+    </div>
+  </a>
+</header>
+<div class="header-line"><div class="header-line-inner"></div></div>
+
+<!-- Main -->
+<main class="page">
+
+  <!-- STEP 1: HERO -->
+  <section class="hero" id="heroSection">
+    <div class="hero-badge">Free Skill Assessment · No Experience Required</div>
+    <h1>Free <span class="acc">LLM & Data<br>Annotation</span> Skill Test</h1>
+    <p class="hero-desc">
+      Discover your real readiness for AI annotation work.
+      15 practical questions — no theory, no jargon. Just honest, real-world thinking.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">⏱ ~8 minutes</span>
+      <span class="pill">🧠 15 questions</span>
+      <span class="pill">🌍 English · العربية soon</span>
+      <span class="pill">🔓 Completely free</span>
+    </div>
+  </section>
+
+  <!-- STEP 2: REGISTRATION -->
+  <div class="reg-card" id="regCard">
+    <div class="reg-title">Start your free assessment</div>
+    <div class="reg-sub">Enter your details to begin. Your information stays private.</div>
+
+    <div class="form-group">
+      <label class="form-label" for="fieldName">Full Name</label>
+      <input class="form-input" id="fieldName" type="text" placeholder="e.g. Sara Ahmed" autocomplete="name" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="fieldEmail">Email Address</label>
+      <input class="form-input" id="fieldEmail" type="email" placeholder="e.g. sara@email.com" autocomplete="email" />
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="fieldCountry">Country</label>
+      <select class="form-select" id="fieldCountry">
+        <option value="" disabled selected>Select your country</option>
+        <option>Egypt</option><option>Saudi Arabia</option><option>United Arab Emirates</option>
+        <option>Jordan</option><option>Morocco</option><option>Tunisia</option>
+        <option>Algeria</option><option>Libya</option><option>Sudan</option>
+        <option>Iraq</option><option>Lebanon</option><option>Kuwait</option>
+        <option>Qatar</option><option>Bahrain</option><option>Oman</option>
+        <option>Yemen</option><option>Syria</option><option>Palestine</option>
+        <option>Pakistan</option><option>India</option><option>Nigeria</option>
+        <option>Kenya</option><option>Ethiopia</option><option>Ghana</option>
+        <option>South Africa</option><option>United Kingdom</option>
+        <option>United States</option><option>Canada</option><option>Australia</option>
+        <option>Germany</option><option>France</option><option>Spain</option>
+        <option>Turkey</option><option>Philippines</option><option>Indonesia</option>
+        <option>Bangladesh</option><option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-note">🔒 Your data is private and will never be sold or shared.</div>
+    <div class="form-error" id="formError"></div>
+
+    <button class="start-btn" id="startBtn">
+      Begin the Test <span>→</span>
+    </button>
+  </div>
+
+  <!-- STEP 3: GREETING -->
+  <div class="greeting-banner" id="greetingBanner"></div>
+
+  <!-- STEP 4: PROGRESS -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-meta">
+      <span class="progress-label">Your progress</span>
+      <span class="progress-count" id="progressCount">1 / 15</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- STEP 5: QUIZ CONTAINER -->
+  <div id="quizContainer"></div>
+
+  <!-- STEP 6: RESULTS -->
+  <div class="results-card" id="resultsCard">
+    <div class="result-greeting" id="resultGreeting"></div>
+
+    <div class="result-score-wrap">
+      <div class="score-glow"></div>
+      <div class="result-score-num" id="scoreNum">0</div>
+      <div class="result-score-total">out of 15</div>
+    </div>
+
+    <div class="result-level" id="resultLevel"></div>
+    <div class="result-title"  id="resultTitle"></div>
+    <p   class="result-message" id="resultMessage"></p>
+
+    <div class="tiers-box">
+      <div class="tiers-box-title">Score Interpretation</div>
+      <div class="tier-row" id="tier-0">
+        <span class="tier-range">0 – 4</span>
+        <span class="tier-label">Beginner — Keep Learning</span>
+      </div>
+      <div class="tier-row" id="tier-1">
+        <span class="tier-range">5 – 8</span>
+        <span class="tier-label">Developing Annotation Skills</span>
+      </div>
+      <div class="tier-row" id="tier-2">
+        <span class="tier-range">9 – 12</span>
+        <span class="tier-label">Strong Attention to Detail</span>
+      </div>
+      <div class="tier-row" id="tier-3">
+        <span class="tier-range">13 – 15</span>
+        <span class="tier-label">Excellent Annotation Potential</span>
+      </div>
+    </div>
+
+    <div class="score-bar-wrap">
+      <div class="score-bar-label">Your Accuracy</div>
+      <div class="score-bar-track">
+        <div class="score-bar-fill" id="scoreBarFill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h3>What's next for you? 💬</h3>
+      <div class="cta-grid">
+        <div class="cta-card">
+          <span class="cta-icon">📣</span>
+          <div><strong>Share your score on LinkedIn</strong>
+          Comment your result and tag Accurate Data Annotator — let's celebrate your effort!</div>
+        </div>
+        <div class="cta-card">
+          <span class="cta-icon">🇸🇦</span>
+          <div><strong>Arabic version — coming soon!</strong>
+          Drop a comment: "Arabic please!" to help us prioritize it.</div>
+        </div>
+        <div class="cta-card">
+          <span class="cta-icon">🚀</span>
+          <div><strong>Want Part 2 — Advanced Challenges?</strong>
+          React with 🔥 on our post if you want harder annotation scenarios!</div>
+        </div>
+        <div class="cta-card">
+          <span class="cta-icon">🔔</span>
+          <div><strong>Follow Accurate Data Annotator</strong>
+          Get new tests, guides, and remote AI work opportunities first.</div>
+        </div>
+      </div>
+      <button class="btn-retry" id="retryBtn">↩ Take the test again</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  Made with care by <a href="#">Accurate Data Annotator</a> ·
+  Empowering the next generation of AI data professionals.
+</footer>
+
+<script>
+// ── USER DATA ──
+let userData = { name:'', email:'', country:'' };
+
+// ── QUESTIONS ──
+const questions = [
+  { category:"Instruction Following", text:"A task says: 'Summarize the text in exactly 2 sentences.' The annotator writes a 4-sentence summary. What should happen?", options:["Accept it — the content is accurate","Reject it — the instruction was not followed","Accept it if the meaning is correct","Ask the manager to decide"], correct:1, feedback:"Instruction following is one of the most critical annotation skills. Even if the content is great, a 4-sentence response violates an explicit constraint. Always follow format instructions exactly." },
+  { category:"Grammar Accuracy", text:"Which sentence is grammatically correct?", options:["She don't know the answer.","She doesn't knows the answer.","She doesn't know the answer.","She not know the answer."], correct:2, feedback:"Option C is correct. With third-person singular subjects (she/he/it), use 'doesn't' + base verb. Options A, B, and D all contain subject-verb agreement errors." },
+  { category:"Content Safety", text:"A user asks an AI: 'What household chemicals should I never mix together?' How should this response be labeled?", options:["Harmful — this teaches dangerous chemistry","Safe — this is legitimate safety information","Ambiguous — needs human review","Spam — irrelevant question"], correct:1, feedback:"This is genuine safety information. Knowing what NOT to mix protects people from accidental harm. Context matters enormously — intent and framing are key in content safety annotation." },
+  { category:"AI Response Evaluation", text:"An AI is asked: 'What is the capital of Australia?' It responds: 'Sydney is the capital of Australia.' How do you label this?", options:["Correct — Sydney is Australia's largest city","Incorrect — the capital is Canberra","Partially correct — Sydney is important","Cannot be determined without more context"], correct:1, feedback:"Canberra is Australia's capital — a very common misconception. Sydney is the largest city but not the capital. AI responses must be factually accurate, and annotators are the last line of defense against misinformation." },
+  { category:"Attention to Detail", text:"Review this sentence: 'The report was submitted on Febuary 14th, 2024.' What is wrong?", options:["The date format is incorrect","'Febuary' is misspelled — it should be 'February'","Nothing is wrong","The year should be written as 'twenty twenty-four'"], correct:1, feedback:"'February' is the correct spelling. Missing the first 'r' is a very common error. Spotting subtle typos is a core annotation skill, especially in grammar and writing quality tasks." },
+  { category:"Context Understanding", text:"A user says: 'My presentation is tomorrow and I'm completely lost.' An AI responds: 'Here is a recipe for chocolate cake.' How do you rate this AI response?", options:["Good — the user might be hungry","Poor — the response is completely off-topic","Average — at least the AI responded","Good — it might reduce their stress"], correct:1, feedback:"The AI completely failed to understand the user's context. A stressed person asking about a presentation needs help with slides, structure, or public speaking — not a recipe. Context understanding is everything." },
+  { category:"Data Labeling Basics", text:"You are labeling images of animals. You see a photo of a cat sitting next to a dog. What is the correct label?", options:["Cat","Dog","Cat, Dog (both labels apply)","Pet"], correct:2, feedback:"When multiple subjects are clearly present, all relevant labels should be applied. Using only one label when two exist creates incomplete annotation, which causes AI models to miss objects in training." },
+  { category:"Instruction Following", text:"A task says: 'Write a response in a formal tone.' The AI responds: 'Hey! That's super cool, here's the info you need 😊.' How do you rate this?", options:["Good — it's friendly and helpful","Poor — the tone violates the instruction","Average — tone doesn't really matter","Good — emojis make content more engaging"], correct:1, feedback:"Tone instructions are part of the task specification. 'Formal' means professional language — no slang, no emojis, no casual expressions. Even if content is helpful, the wrong tone is a failure to follow instructions." },
+  { category:"Simple Reasoning", text:"A store sells apples for $2 each. A customer buys 3 apples and pays with a $10 bill. How much change should they receive?", options:["$3","$4","$5","$6"], correct:1, feedback:"3 apples × $2 = $6. $10 − $6 = $4 change. Simple math verification is part of annotation work — you'll often need to confirm whether an AI's calculations are correct." },
+  { category:"Content Safety", text:"A social media post reads: 'I hate Mondays so much I could scream!' This should be labeled as:", options:["Violent content — mentions screaming","Hate speech — contains the word 'hate'","Harmless everyday expression","Needs immediate escalation"], correct:2, feedback:"Context is everything in content safety. 'I hate Mondays' is a universally understood expression of mild frustration. Over-flagging harmless content is just as problematic as missing genuinely harmful content." },
+  { category:"Grammar Accuracy", text:"Choose the sentence with correct punctuation:", options:["Its a beautiful day, isnt it.","It's a beautiful day, isn't it?","Its a beautiful day isn't it?","It's a beautiful day isn't it."], correct:1, feedback:"Option B is correct. 'It's' = it is (apostrophe needed). 'Isn't it?' is a question tag requiring a question mark. Apostrophes and punctuation precision matter greatly in annotation quality tasks." },
+  { category:"AI Response Evaluation", text:"A user asks for advice about a severe headache. An AI responds: 'You likely have a brain tumor.' This response is:", options:["Helpful — gives a direct answer","Harmful — makes unqualified medical diagnoses","Neutral — just sharing possibilities","Good — encourages the user to seek help"], correct:1, feedback:"AI should never make specific medical diagnoses — this can cause serious psychological harm. The correct response would be empathetic, suggest common causes, and recommend consulting a healthcare professional." },
+  { category:"Attention to Detail", text:"You receive 50 images to label as 'indoor' or 'outdoor.' After completing 49, you realize image #12 which you labeled 'indoor' was actually taken outside. What do you do?", options:["Ignore it — one mistake won't matter","Go back and correct label #12 before submitting","Finish all 50 then submit without changes","Delete image #12 from the batch"], correct:1, feedback:"Always correct errors before submitting. One wrong label might seem small, but errors compound in large datasets. Quality annotators review their work — integrity in annotation directly impacts AI model accuracy." },
+  { category:"Context Understanding", text:"A customer writes: 'Your product is just great 🙄' What is the most likely intended meaning?", options:["They are genuinely satisfied with the product","They are being sarcastic and are probably unhappy","They are confused about the product","They want to buy more products"], correct:1, feedback:"The 🙄 (eye-roll) emoji is a strong signal of sarcasm. 'Just great' paired with an eye-roll almost always means the opposite. Understanding tone, sarcasm, and emoji context is valuable for sentiment analysis annotation." },
+  { category:"Simple Reasoning", text:"An AI is asked to translate 'Good morning' into Spanish. It responds: 'Buenas noches.' This is:", options:["Correct — that's Spanish","Incorrect — 'Buenas noches' means 'Good night,' not 'Good morning'","Partially correct — it's a greeting","Cannot be evaluated without more context"], correct:1, feedback:"'Buenos días' = Good morning. 'Buenas noches' = Good night. The response doesn't match the user's clear request — that's a translation failure. Annotators flag this type of mismatch." }
+];
+
+// ── RESULT TIERS ──
+const tiers = [
+  { max:4,  idx:0, level:'Beginner',   cls:'level-beginner',   title:'Keep Exploring!',                msg:"Every expert started exactly where you are. The fact you took this test shows initiative. Review the feedback on each answer and try again — improvement comes fast with practice." },
+  { max:8,  idx:1, level:'Developing', cls:'level-developing', title:"You're Building Real Skills",     msg:"Solid start! You understand the basics and are developing genuine annotation thinking. Focus on instruction-following and content safety to push your score even higher." },
+  { max:12, idx:2, level:'Strong',     cls:'level-strong',     title:'Strong Attention to Detail',     msg:"Impressive! You have a clear eye for quality, accuracy, and instruction-following. You're ready to explore real annotation platforms and start earning remote income." },
+  { max:15, idx:3, level:'Excellent',  cls:'level-excellent',  title:'Excellent Annotation Potential', msg:"Outstanding! You think like an experienced annotator. Your attention to detail, contextual understanding, and reasoning are all strong — this field is a great fit for you." }
+];
+
+// ── STATE ──
+let currentQ = 0, score = 0;
+let answered  = new Array(questions.length).fill(false);
+
+// ── FORM SUBMIT ──
+document.getElementById('startBtn').addEventListener('click', () => {
+  const name    = document.getElementById('fieldName').value.trim();
+  const email   = document.getElementById('fieldEmail').value.trim();
+  const country = document.getElementById('fieldCountry').value;
+  const errEl   = document.getElementById('formError');
+
+  if (!name || !email || !country) {
+    errEl.textContent = '⚠ Please fill in all fields to continue.';
+    errEl.classList.add('show'); return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = '⚠ Please enter a valid email address.';
+    errEl.classList.add('show'); return;
+  }
+  errEl.classList.remove('show');
+  userData = { name, email, country };
+
+  document.getElementById('heroSection').style.display = 'none';
+  document.getElementById('regCard').style.display     = 'none';
+
+  const gb = document.getElementById('greetingBanner');
+  gb.innerHTML = `Welcome, <strong>${name}</strong> from ${country}! 👋 Your test is ready — good luck!`;
+  gb.style.display = 'block';
+
+  document.getElementById('progressWrap').style.display = 'block';
+  buildCards();
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── BUILD CARDS ──
+function buildCards() {
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = '';
+  const L = ['A','B','C','D'];
+  questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'quiz-card' + (qi === 0 ? ' active' : '');
+    card.id = `card-${qi}`;
+    card.innerHTML = `
+      <div class="q-category">${q.category}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="options">${q.options.map((o,oi)=>`
+        <button class="option" data-q="${qi}" data-o="${oi}">
+          <span class="opt-letter">${L[oi]}</span><span>${o}</span>
+        </button>`).join('')}</div>
+      <div class="q-feedback" id="fb-${qi}"></div>
+      <div class="q-actions">
+        <button class="btn-next" id="next-${qi}" data-qi="${qi}">
+          ${qi < questions.length-1 ? 'Next question →' : 'See my results →'}
+        </button>
+      </div>`;
+    c.appendChild(card);
+  });
+  document.querySelectorAll('.option').forEach(b => b.addEventListener('click', handleOption));
+  document.querySelectorAll('.btn-next').forEach(b => b.addEventListener('click', handleNext));
+}
+
+// ── OPTION CLICK ──
+function handleOption(e) {
+  const btn = e.currentTarget;
+  const qi  = parseInt(btn.dataset.q);
+  const oi  = parseInt(btn.dataset.o);
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const isCorrect = oi === questions[qi].correct;
+  if (isCorrect) score++;
+  document.querySelectorAll(`.option[data-q="${qi}"]`).forEach(o => {
+    o.classList.add('disabled');
+    const idx = parseInt(o.dataset.o);
+    if (idx === questions[qi].correct) o.classList.add('correct');
+    else if (idx === oi && !isCorrect) o.classList.add('wrong');
+  });
+  const fb = document.getElementById(`fb-${qi}`);
+  fb.innerHTML = `<strong>${isCorrect ? '✓ Correct!' : '✗ Not quite.'}</strong> ${questions[qi].feedback}`;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  document.getElementById(`next-${qi}`).classList.add('show');
+}
+
+// ── NEXT ──
+function handleNext(e) {
+  const qi = parseInt(e.currentTarget.dataset.qi);
+  if (qi < questions.length - 1) {
+    document.getElementById(`card-${qi}`).classList.remove('active');
+    currentQ = qi + 1;
+    document.getElementById(`card-${currentQ}`).classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else { showResults(); }
+}
+
+// ── PROGRESS ──
+function updateProgress() {
+  document.getElementById('progressFill').style.width = (currentQ / questions.length * 100) + '%';
+  document.getElementById('progressCount').textContent = `${currentQ + 1} / ${questions.length}`;
+}
+
+// ── RESULTS ──
+function showResults() {
+  document.getElementById('quizContainer').style.display  = 'none';
+  document.getElementById('progressWrap').style.display   = 'none';
+  document.getElementById('greetingBanner').style.display = 'none';
+
+  const tier = tiers.find(t => score <= t.max) || tiers[tiers.length - 1];
+  const pct  = Math.round(score / questions.length * 100);
+
+  document.getElementById('resultGreeting').innerHTML =
+    `Well done, <strong>${userData.name}</strong>! Here are your results:`;
+  document.getElementById('scoreNum').textContent      = score;
+  document.getElementById('resultLevel').textContent   = tier.level;
+  document.getElementById('resultLevel').className     = 'result-level ' + tier.cls;
+  document.getElementById('resultTitle').textContent   = tier.title;
+  document.getElementById('resultMessage').textContent = tier.msg;
+
+  [0,1,2,3].forEach(i => {
+    const row = document.getElementById(`tier-${i}`);
+    if (i === tier.idx) {
+      row.classList.add('active-tier');
+      const b = document.createElement('span');
+      b.className = 'tier-you'; b.textContent = 'You';
+      row.appendChild(b);
+    }
+  });
+
+  document.getElementById('resultsCard').classList.add('show');
+  setTimeout(() => { document.getElementById('scoreBarFill').style.width = pct + '%'; }, 150);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── RETRY ──
+document.getElementById('retryBtn').addEventListener('click', () => {
+  currentQ = 0; score = 0;
+  answered = new Array(questions.length).fill(false);
+
+  document.getElementById('resultsCard').classList.remove('show');
+  document.getElementById('scoreBarFill').style.width = '0%';
+  [0,1,2,3].forEach(i => {
+    const row = document.getElementById(`tier-${i}`);
+    row.classList.remove('active-tier');
+    const b = row.querySelector('.tier-you');
+    if (b) b.remove();
+  });
+
+  document.getElementById('heroSection').style.display = '';
+  document.getElementById('regCard').style.display     = '';
+  document.getElementById('quizContainer').style.display = '';
+  document.getElementById('progressWrap').style.display  = 'none';
+  document.getElementById('greetingBanner').style.display = 'none';
+  buildCards();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
